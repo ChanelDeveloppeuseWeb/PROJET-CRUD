@@ -6,11 +6,20 @@ function validateForm() {
   if (name == "") {
     alert("name is required");
     return false;
+  } 
+  if (age == ""){
+    alert("l'age is required");
+    return false;
   }
- if (age  >=4 && age <= 8) {
-  alert("l age ne doit pas etre compris entre 4 et 8");
-  return false;
- }
+
+  if (age < 1) {
+    alert("age doit etre superieur a 0");
+    return false;
+  }
+  if (age >= 3 && age <= 4.5){
+    alert("l age ne doit etre compris entre 3 et 4.5");
+    return false;
+  }
  
   if (adress == "") {
     alert("adress is required");
@@ -27,12 +36,11 @@ function validateForm() {
 }
 
 function showData() {
-  var peopleList;
-  if (localStorage.getItem("peopleList") == null) {
+  var peopleList = JSON.parse(localStorage.getItem("peopleList"));
+  console.log(typeof peopleList);
+  if (!peopleList) {
     peopleList = [];
-  } else {
-    peopleList = JSON.parse(localStorage.getItem("peopleList"));
-  }
+  } 
   var html = "";
   peopleList.forEach(function (element, index) {
     html += "<tr>";
